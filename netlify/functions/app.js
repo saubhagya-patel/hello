@@ -3,10 +3,11 @@ import bodyParser from "body-parser";
 import serverless from "serverless-http";
 
 import env from 'dotenv';
+import { getAllBooks } from "../../controllers/functions";
+import router from "../../routes/router";
 env.config();
 
-import { getAllBooks } from "../controllers/functions.js"
-import router from "../routes/router.js";
+getAllBooks
 
 const app = express();
 // const router = express.Router();
