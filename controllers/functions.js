@@ -23,7 +23,7 @@ client.connect(async function (err) {
     await client.query("SELECT VERSION()", [], function (err, result) {
         if (err)
             throw err;
-        console.log(result.rows[0]);
+        // console.log(result.rows[0]);
     })
 })
 
