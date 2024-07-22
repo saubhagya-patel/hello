@@ -5,9 +5,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "build": "netlify deploy --prod"
+    "start": "node netlify/functions/app.js",
+    "build": "echo 'No build step required'",
+    "dev": "nodemon netlify/functions/app.js"
   },
   "author": "",
   "license": "ISC",
