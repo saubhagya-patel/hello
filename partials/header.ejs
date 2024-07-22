@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/assets/icons/book.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Book Notes App</title>
+</head>
+
+<body>
+
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <img src="/assets/icons/book.svg" class="svgIcon mx-3 link-body-emphasis" alt="book">
+                    <span class="h3">Book Notes App</span>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mx-3">
+                    <li>
+                        <a href="/features" class="mx-2 btn">Features</a>
+                    </li>
+                    <!-- <li>
+                <a href="#" class="mx-2 btn">Contact Us</a>
+            </li> -->
+                    <li>
+                        <a href="/book/searchBook" class="mx-2 btn">Add Books</a>
+                    </li>
+                </ul>
+
+                <div class="text-end">
+                    <a class="nav-link dropdown-toggle ms-sm-4" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort by:
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/book/sort/rating">Rating</a>
+                        <a class="dropdown-item" href="/book/sort/year">Published year</a>
+                        <a class="dropdown-item" href="/book/sort/date_modified">Date Modified</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <main class="container">

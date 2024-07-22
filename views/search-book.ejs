@@ -1,0 +1,40 @@
+<%- include("../partials/header.ejs") %>
+
+    <h2 class="m-3" id="searchHeading">Select your search criteria:</h2>
+
+    <div id="check" class="col-12 mt-6 mx-auto p-4">
+        <hr class="featurette-divider">
+        <input type="radio" id="isbn" name="searchCriteria" value="isbn" class="form-check-input" onchange="handleRadioChange(this)" hidden>
+        <label for="isbn" class="form-check-label d-block btn p-3">ISBN</label>
+        <hr class="featurette-divider">
+        <input type="radio" class="form-check-input" id="bookName" name="searchCriteria" value="bookName" onchange="handleRadioChange(this)" hidden>
+        <label for="bookName" class="form-check-label d-block btn p-3">Book Name</label>
+        <hr class="featurette-divider">
+    </div>
+
+    <form action="/book/search-book" method="post">
+        <div class="form-group">
+            <input type="hidden" name="searchCriteria" value="" id="searchOption">
+            <input type="number" id="isbnInput" name="isbn" class="form-control col-10 mx-auto mt-3" placeholder="Enter ISBN of book without hyphen(-)" hidden>
+            <input type="text" id="bookNameInput" name="bookName" class="form-control  col-10 mx-auto mt-3" placeholder="Enter book name" hidden>
+            <button id="submitButton" class="btn btn-primary mt-3" type="submit" hidden>
+              Search
+            </button>
+          </div>
+    </form>
+
+    <script>
+        function handleRadioChange(searchCriteria) {
+            document.getElementById("check").setAttribute("hidden",true);
+            if(searchCriteria.value=='isbn') {
+                document.getElementById('isbnInput').removeAttribute("hidden");
+            }else{
+                document.getElementById('bookNameInput').removeAttribute("hidden");
+            }
+            document.getElementById("submitButton").removeAttribute("hidden");
+            document.getElementById("searchOption").value=searchCriteria.value;
+            document.getElementById("searchHeading").innerHTML="Enter details to search the book :";
+        }
+    </script>
+
+    <%- include("../partials/footer.ejs") %>

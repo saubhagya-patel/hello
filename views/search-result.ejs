@@ -1,0 +1,35 @@
+<%- include("../partials/header.ejs") %>
+
+    <% if (locals.data) { %>
+
+     <% data.forEach((book) => { %>
+      <div class="col-md-6">
+         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+           <div class="col p-4 d-flex flex-column position-static">
+             <h3 class="mb-0"><%= book.title %></h3>
+             <div class="mb-1 text-body-secondary">by <%= book.author_name ? book.author_name[0] : "Unknown" %></div>
+             <p class="card-text">
+               Published in : <%= book.first_publish_year %>
+             </p>
+             <a href="/book/result-book/<%= book.isbn ? book.isbn[0] : "" %>" class="icon-link gap-1 icon-link-hover stretched-link">
+               Click to add book
+             </a>
+           </div>
+           <div class="col-auto d-none d-lg-block">
+              <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+              src="https://covers.openlibrary.org/b/id/<%= book.cover_i %>.jpg?default=https://openlibrary.org/static/images/icons/avatar_book.png"
+                  preserveaspectratio="xMidYMid slice" focusable="false" width="160" height="200">
+           </div>
+         </div>
+       </div>
+     <% }) %>
+
+    <% } else { %>
+      <div class="col-6 mx-auto my-3">
+         <p class="display-3 lead">
+            Sorry, can't fetch books.
+         </p>
+      </div>
+   <% } %>
+
+<%- include("../partials/footer.ejs") %>

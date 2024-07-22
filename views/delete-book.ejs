@@ -1,0 +1,43 @@
+<%- include("../partials/header.ejs") %>
+
+    <% if (locals.data) { %>
+        <div class="px-4 py-5 text-center">
+            <div class="d-flex justify-content-center align-items-center">
+                <img class="d-block mx-auto mb-4" src="https://covers.openlibrary.org/b/id/<%= data.coverid %>.jpg"
+                    alt="bookImage" height="400px" width="auto">
+                <div class="container d-flex flex-column ">
+                    <hr class="featurette-divider m-3">
+                    <h1 class="display-5 fw-bold text-body-emphasis">
+                        <%= data.title %>
+                    </h1>
+                    <p class="lead">
+                        by <%= data.author %>
+                    </p>
+                    <p class="info-para">
+                        Published in : <%= data.year %>
+                    </p>
+                    <hr class="featurette-divider m-3">
+                </div>
+            </div>
+
+            <div class="container d-flex flex-column align-items-start gap-4">
+                <h2 class="text-body-emphasis display-6" id="aboutTitle">
+                    Are you sure you want to delete?
+                </h2>
+                <form action="/book/delete/<%= data.isbn %>" method="post">
+                    <input type="submit" class="btn btn-primary float-right" value="Yes. Remove book">
+                </form>
+                <form action="/book/summary/<%= data.isbn %>" method="get">
+                    <input type="submit" class="btn btn-secondary float-right" value="No. Do not remove book.">
+                </form>
+            </div>
+    <% }else { %>
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <p class="lead">
+                Sorry canot book info.
+                Some error occurred.
+            </p>
+        </div>
+        <% } %>
+
+<%- include("../partials/footer.ejs") %>

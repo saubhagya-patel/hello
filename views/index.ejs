@@ -1,0 +1,35 @@
+<%- include("../partials/header.ejs") %>
+
+    <div class="container">
+        <% if (locals.bookInfo) { %>
+            <% bookInfo.forEach(book=> { %>
+                <hr class="featurette-divider" />
+                <div class="row featurette py-4">
+                    <div class="col-md-4">
+                        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto mb-1"
+                            id="bookCover" src="https://covers.openlibrary.org/b/id/<%= book.coverid %>.jpg"
+                            preserveaspectratio="xMidYMid slice" focusable="false">
+                    </div>
+                    <div class="col-md-8">
+                        <h2 class="featurette-heading fw-normal lh-1 mb-2">
+                            <%= book.title %>
+                        </h2>
+                        <h4 class="featurette-heading fw-normal by">by <%= book.author %>
+                        </h4>
+                        <p class="lead d-none d-md-block">
+                            ISBN: <%= book.isbn %><br>
+                                Published in: <%= book.year %><br>
+                                    Number of pages: <%= book.pages %>
+                        </p>
+                        <p class="lead">
+                        <form action="/book/summary/<%= book.isbn %>" method="get">
+                            <input type="submit" class="bg-primary rounded border-0 p-2" value="Read About Book">
+                        </form>
+                        </p>
+                    </div>
+                </div>
+                <% }) %>
+                    <% } %>
+    </div>
+
+    <%- include("../partials/footer.ejs") %>

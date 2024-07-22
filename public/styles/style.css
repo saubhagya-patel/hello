@@ -1,0 +1,33 @@
+#bookCover {
+    object-fit: cover;
+    height: 200px;
+    width: auto;
+}
+
+.info-para {
+    margin: 0;
+}
+
+#postReviewButton {
+    display: block;
+    width: 72%;
+    margin: auto;
+}
+
+.svgIcon {
+    fill: currentColor;
+    object-fit: cover;
+    height: 28px;
+    width: auto;
+}
+
+textarea{
+    padding: 0;
+    margin: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

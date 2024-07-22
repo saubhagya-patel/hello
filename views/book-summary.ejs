@@ -1,0 +1,151 @@
+<%- include("../partials/header.ejs") %>
+
+    <div class="container">
+        <% if (locals.bookSummary && locals.bookInfo) { %>
+            <div class="px-4 py-5 text-center">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img class="d-block mx-auto mb-4"
+                        src="https://covers.openlibrary.org/b/id/<%= bookInfo.coverid %>.jpg" alt="bookImage"
+                        height="400px" width="auto">
+                    <div class="container d-flex flex-column ">
+                        <hr class="featurette-divider m-3">
+                        <h1 class="display-5 fw-bold text-body-emphasis">
+                            <%= bookInfo.title %>
+                        </h1>
+                        <p class="lead">
+                            by <%= bookInfo.author %>
+                        </p>
+                        <p class="info-para">
+                            Rating : <%= bookSummary.rating %>
+                        </p>
+                        <p class="info-para">
+                            Published in : <%= bookInfo.year %>
+                        </p>
+                        <hr class="featurette-divider m-3">
+                    </div>
+                </div>
+                <div class="container mt-4 d-flex flex-column align-items-center">
+                    <div class="container d-flex flex-column align-items-start" id="divToHide">
+                        <h2 class="fw-bold text-body-emphasis" id="aboutTitle">
+                            About Book
+                        </h2>
+                        <h2 class="fw-bold text-body-emphasis" id="editTitle" hidden>
+                            Edit Book Review
+                        </h2>
+                        <p class="lead text-start" id="summaryToHide">
+                            <%= bookSummary.summary %>
+                        </p>
+                    </div>
+                    <hr class="featurette-divider m-3" id="lineToHide">
+                    <div class="container d-flex justify-content-between">
+                        <p class="font-weight-light" id="dateToHide">
+                            Date modified : <%= bookSummary.date_modified %>
+                        </p>
+                        
+                    </div>
+                    <hr class="featurette-divider m-3">
+                    <!-- bg-primary rounded border-0 p-2 float-right -->
+                    <div class="container d-flex gap-4">
+                        <button class="btn btn-primary rounded" id="editButton" onclick="handler()">
+                            Edit Review
+                        </button>
+                        <form action="/book/delete/<%= bookInfo.isbn %>" method="get">
+                            <input type="submit" class="btn btn-secondary float-right" value="Remove book">
+                        </form>
+                    </div>
+                    
+
+                </div>
+            </div>
+            <!-- this is the form which we will use to edit the review  -->
+            <!-- <form action="/edit/<%= bookInfo.id %>" method="post">
+            <input type="hidden" name="updatedReviewId" value="<%= bookInfo.id %>">
+            <input type="number" name="updatedRating" id="rating" value="<%= bookSummary.rating %>" hidden>
+            <textarea name="updatedReview" id="summaryEdit" class="form-control m-3" rows="10" cols=auto autocomplete="off"
+            autofocus="true" hidden="true">
+                <%= bookSummary.summary %>
+            </textarea>
+            <button id="postReviewButton" class="btn btn-primary mt-2" type="submit" hidden>
+                Post Review
+            </button>
+        </form> -->
+
+            <div class="mb-3">
+                <!-- form to update review  -->
+                <form action="/book/edit/<%= bookInfo.isbn %>" method="post">
+                    <!-- gives id so we can use it  -->
+                    <input type="hidden" name="updatedReviewId" value="<%= bookInfo.isbn %>">
+                    <!-- rating to be updated  -->
+                    <input type="number" name="updatedRating" class="form-control m-3 mx-auto" id="rating" placeholder="Enter updated rating" hidden>
+                    <div class="mb-3">
+                        <!-- shows the updation summary  -->
+                        <!-- <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label> -->
+                        <textarea class="form-control" name="updatedReview" id="summaryEdit" rows="3" autocomplete="off"
+                            autofocus="true" hidden="true">
+                            <%= bookSummary.summary %>
+                        </textarea>
+                        <button id="postReviewButton" class="btn btn-primary mt-2" type="submit" hidden>
+                            Post Review
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+
+            <% }else { %>
+                <div class="h-100 d-flex align-items-center justify-content-center">
+                    <p class="lead">
+                        Sorry canot display summary.
+                        Some error occurred.
+                    </p>
+                </div>
+                <% } %>
+    </div>
+
+    <script>
+        function handler() {
+            document.getElementById("summaryToHide").setAttribute("hidden", true);
+            document.getElementById("editButton").setAttribute("hidden", true);
+            document.getElementById("dateToHide").setAttribute("hidden", true);
+            document.getElementById("lineToHide").setAttribute("hidden", true);
+            document.getElementById("aboutTitle").setAttribute("hidden", true);
+
+            document.getElementById("summaryEdit").removeAttribute("hidden");
+            document.getElementById("postReviewButton").removeAttribute("hidden");
+            document.getElementById("editTitle").removeAttribute("hidden");
+            document.getElementById("rating").removeAttribute("hidden");
+        }
+
+    </script>
+
+
+    <!-- <div class="container col-xxl-10 col-xl-8">
+    <div class="row flex-lg-row align-items-center g-3">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="https://covers.openlibrary.org/b/isbn/9780143448334.jpg" class="d-block mx-lg-auto img-fluid"
+                alt="book img" id="bookCover" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+            <h3 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">
+                Wish I Could Tell You
+            </h3>
+            <div class="d-grid d-md-flex-column justify-content-md-start">
+                <p class="lead">Author : Durjoy Dutta</p>
+                <p class="lead">ISBN : 9780143448334</p>
+                <p class="lead">Published in : 2019</p>
+                <p class="lead">Number of pages : 257</p>
+            </div>
+            <p>
+                Expect a book that has romance at its very core but one that
+                has a lot more to offer than just a regular cliché romance. The book narrates a
+                powerful story in a simple language and is packed with intense emotions, strong
+                characters, highly unexpected twists and an underwhelming but beautiful romance.
+                Finally, expect a book that takes Durjoy Datta’s writing to a whole new level.
+            </p>
+        </div>
+    </div>
+</div> -->
+
+
+
+    <%- include("../partials/footer.ejs") %>
