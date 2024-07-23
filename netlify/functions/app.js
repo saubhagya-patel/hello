@@ -11,12 +11,11 @@ const app = express();
 // const router = express.Router();
 const port = 3000;
 
-app.use(express.static("../public"));
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 app.use("/book", router)
-
 let book = [];
 
 app.get("/", async (req, res) => {
