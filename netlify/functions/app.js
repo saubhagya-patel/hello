@@ -7,8 +7,6 @@ import { getAllBooks } from "../../controllers/functions";
 import router from "../../routes/router";
 env.config();
 
-getAllBooks
-
 const app = express();
 // const router = express.Router();
 const port = 3000;
@@ -18,7 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 app.use("/book", router)
-
 
 let book = [];
 
