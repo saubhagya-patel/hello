@@ -1,6 +1,5 @@
 import pg from "pg";
 import env from 'dotenv';
-// env.config({ path: '../.env' });
 env.config();
 
 const config = {
@@ -23,7 +22,6 @@ client.connect(async function (err) {
     await client.query("SELECT VERSION()", [], function (err, result) {
         if (err)
             throw err;
-        // console.log(result.rows[0]);
     })
 })
 
@@ -37,9 +35,6 @@ export async function getBoookInfo(bookIsbn) {
         console.error(`error getting book info of isbn:${bookIsbn}`, error);
     }
 }
-
-// const test = await getAllBooks();
-// console.log(test);
 
 export async function getAllBooks(wayToSort = 'id') {
     try {
